@@ -33,7 +33,7 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: |
-          planOutput=`terraform plan -no-color`
+          planOutput="${terraform plan -no-color}"
           planOutput="${planOutput//'%'/'%25'}"
           planOutput="${planOutput//$'\n'/'%0A'}"
           planOutput="${planOutput//$'\r'/'%0D'}"
