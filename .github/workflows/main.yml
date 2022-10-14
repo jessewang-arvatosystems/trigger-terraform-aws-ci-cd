@@ -34,10 +34,10 @@ jobs:
         id: plan
         run: |
           planOutput=${terraform plan -no-color}
-          planOutput="${{planOutput//'%'/'%25'}}"
-          planOutput="${{planOutput//$'\n'/'%0A'}}"
-          planOutput="${{planOutput//$'\r'/'%0D'}}"
-          echo "PLAN_OUTPUT=${{planOutput}}" >> $GITHUB_ENV
+          planOutput="${planOutput//'%'/'%25'}"
+          planOutput="${planOutput//$'\n'/'%0A'}"
+          planOutput="${planOutput//$'\r'/'%0D'}"
+          echo "PLAN_OUTPUT=${planOutput}" >> $GITHUB_ENV
 
       - uses: actions/github-script@v6
         with:
