@@ -34,7 +34,7 @@ jobs:
         id: plan
         run: |
           echo 'PLAN_OUTPUT<<EOF' >> $GITHUB_ENV
-          terraform plan -no-color -input=false >> $GITHUB_ENV
+          terraform plan -no-color >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
 
       - uses: actions/github-script@v6
