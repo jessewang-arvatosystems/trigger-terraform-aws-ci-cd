@@ -47,9 +47,11 @@ jobs:
             #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
             
             <details><summary>Show Plan</summary>
+            
             \`\`\`\n
             ${{ env.PLAN_OUTPUT }}
             \`\`\`
+            
             </details>
             
             *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
