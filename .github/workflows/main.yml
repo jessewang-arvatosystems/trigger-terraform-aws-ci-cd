@@ -33,11 +33,9 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: |
-          planOutput=`terraform plan -no-color`
-          planOutput="${planOutput//'%'/'%25'}"
-          planOutput="${planOutput//$'\n'/'%0A'}"
-          planOutput="${planOutput//$'\r'/'%0D'}"
-          echo "PLAN_OUTPUT=${planOutput}" >> $GITHUB_ENV
+          echo 'PLAN_OUTPUT<<EOF' >> $GITHUB_ENV
+          terraform plan -no-color >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
 
       - uses: actions/github-script@v6
         with:
@@ -49,7 +47,7 @@ jobs:
             #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
             <details><summary>Show Plan</summary>
             \`\`\`\n
-            echo "${{ env.PLAN_OUTPUT }}"
+            ${{ env.PLAN_OUTPUT }}
             \`\`\`
             </details>
             *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
