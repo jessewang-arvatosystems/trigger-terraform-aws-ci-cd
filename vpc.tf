@@ -3,7 +3,8 @@ resource "aws_vpc" "main" {
   instance_tenancy = "default"
 
   tags = {
-    Creator = "terraform example"
+    Creator = "terraform example",
+    Id = "terraform created vpc"
   }
 }
 
@@ -12,6 +13,7 @@ resource "aws_subnet" "main" {
   cidr_block = "10.0.1.0/24"
 
   tags = {
-    Creator = "terraform example"
+    Creator = "terraform example",
+    Id = "terraform created subnet"
   }
 }
