@@ -37,7 +37,7 @@ jobs:
           planOutput="${planOutput//'%'/'%25'}"
           planOutput="${planOutput//$'\n'/'%0A'}"
           planOutput="${planOutput//$'\r'/'%0D'}"
-          echo "PLAN_OUTPUT=${planOutput}" >> $GITHUB_ENV
+          echo "PLAN_OUTPUT=${planOutput}" >> $GITHUB_OUTPUT
 
       - uses: actions/github-script@v6
         with:
