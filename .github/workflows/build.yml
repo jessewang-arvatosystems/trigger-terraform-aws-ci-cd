@@ -5,10 +5,28 @@ on:
       - closed
 
 jobs:
-  if_merged:
+  terraform:
     name: "Build Terraform"
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply --auto-approve
+
+      - name: Terraform Plan Status
+        if: steps.apply.outcome == 'failure'
+        run: exit 1
+
       - run: |
-          echo The PR was merged
+          echo The Terraform build has been successfully applied
