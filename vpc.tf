@@ -4,7 +4,7 @@ resource "aws_vpc" "main" {
 
   tags = {
     Creator = "terraform example",
-    Id = "terraform example",
+    Id      = "terraform example",
   }
 }
 
@@ -14,6 +14,6 @@ resource "aws_subnet" "main" {
 
   tags = {
     Creator = "terraform example",
-    Id = "terraform example",
+    Id      = "terraform example",
   }
 }
