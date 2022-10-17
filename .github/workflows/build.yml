@@ -20,11 +20,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
       - name: Terraform Apply
         id: apply
         run: terraform apply --auto-approve
 
-      - name: Terraform Plan Status
+      - name: Terraform Apply Status
         if: steps.apply.outcome == 'failure'
         run: exit 1
 
