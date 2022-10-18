@@ -10,6 +10,9 @@ jobs:
   terraform:
     name: "Validate Terraform"
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
 #      - name: Set AWS credentials
 #        uses: aws-actions/configure-aws-credentials@v1
@@ -22,7 +25,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-region: us-east-1
-          role-to-assume: arn:aws:iam::379442902244:role/github-oidc-role
+          role-to-assume: ${{ secrets.AWS_GITHUB_OIDC_ROLE }}
 
 #      - name: Login to Amazon ECR
 #        id: login-ecr
