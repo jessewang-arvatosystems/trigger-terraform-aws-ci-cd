@@ -1,13 +1,14 @@
-# Runs when a PR is merged
+# Runs when a PR is merged or triggered manually on main branch
 on:
   pull_request:
     types:
       - closed
+  workflow_dispatch:
 
 jobs:
   terraform:
     name: "Apply Terraform"
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       id-token: write

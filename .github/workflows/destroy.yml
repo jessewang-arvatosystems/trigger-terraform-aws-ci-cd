@@ -1,4 +1,4 @@
-# Only allow destroy to be triggered manually on main
+# Only allow destroy to be triggered manually on main branch
 on:
   workflow_dispatch:
 
