@@ -3,12 +3,6 @@ on:
   pull_request:
     types:
       - closed
-    inputs:
-      aws_role:
-        required: true
-      ecr_region:
-        required: true
-        default: 'us-east-1'
 
 jobs:
   terraform:
