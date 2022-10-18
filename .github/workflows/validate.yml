@@ -2,9 +2,6 @@ on:
   pull_request:
     branches:
       - main
-    inputs:
-      aws_role:
-        required: true
 
 jobs:
   terraform:
