@@ -1,10 +1,11 @@
-# Only allow destroy to be triggered manually
+# Only allow destroy to be triggered manually on main
 on:
   workflow_dispatch:
 
 jobs:
   terraform:
     name: "Destroy Terraform"
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       id-token: write
