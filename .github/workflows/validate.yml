@@ -45,6 +45,7 @@ jobs:
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
         with:
+          issue-number: ${{ github.event.issue.number }}
           body: |
             #### Terraform Format and Style 🖌`${{ steps.fmt.outcome }}`
             #### Terraform Initialization ⚙️`${{ steps.init.outcome }}`
