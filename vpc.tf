@@ -5,7 +5,7 @@ resource "aws_vpc" "main" {
   tags = {
     Creator = "terraform",
     Id      = "terraform vpc",
-    Name    = "terraform vpc",
+    Name    = "terraform vpc test",
   }
 }
 
