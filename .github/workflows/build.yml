@@ -15,16 +15,15 @@ jobs:
     name: "Build Terraform"
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@master
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-region: ${{ github.event.inputs.ecr_region }}
-          role-to-assume: ${{ github.event.inputs.aws_role }}
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+          aws-region: us-east-1
+          role-to-assume: ${{ secrets.AWS_GITHUB_OIDC_ROLE }}
 
       - name: Checkout
         uses: actions/checkout@v3
