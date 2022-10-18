@@ -1,4 +1,4 @@
-# Run when the PR is merged
+# Runs when a PR is merged
 on:
   pull_request:
     types:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   terraform:
-    name: "Build Terraform"
+    name: "Apply Terraform"
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:

@@ -1,3 +1,4 @@
+# Runs on an open PR or open PR code update
 on:
   pull_request:
     branches:
@@ -60,3 +61,6 @@ jobs:
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
+
+      - run: |
+          echo The Terraform build has been successfully validated
