@@ -19,9 +19,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-region: us-east-1
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#          role-to-assume: ${{ secrets.AWS_GITHUB_OIDC_ROLE }}
+          role-to-assume: ${{ secrets.AWS_GITHUB_OIDC_ROLE }}
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -57,36 +55,10 @@ jobs:
 
             <details><summary>Show Plan</summary>
 
-            ```
-            ${{ env.PLAN_OUTPUT }}
+            ```${{ env.PLAN_OUTPUT }}
             ```
 
             </details>
-
-#        with:
-#          github-token: ${{ secrets.GITHUB_TOKEN }}
-#      - uses: actions/github-script@v6
-#        script: |
-#          const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
-#          #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
-#          #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
-#          #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
-#
-#          <details><summary>Show Plan</summary>
-#
-#          \`\`\`
-#          ${{ env.PLAN_OUTPUT }}
-#          \`\`\`
-#
-#          </details>
-#
-#          *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
-#          github.rest.issues.createComment({
-#            issue_number: context.issue.number,
-#            owner: context.repo.owner,
-#            repo: context.repo.repo,
-#            body: output
-#          })
 
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
